@@ -4737,6 +4737,7 @@ input {
 .rz-panel-menu .rz-navigation-item-icon-children {
   font-size: var(--rz-panel-menu-toggle-icon-font-size);
   opacity: var(--rz-panel-menu-toggle-icon-opacity);
+  z-index: 1;
 }
 
 .rz-panel-menu .rz-navigation-item-icon {
@@ -5515,6 +5516,8 @@ ul.rz-profile-menu .rz-navigation-menu .rz-fileupload-row .rz-paginator-element 
 }
 
 .rz-fieldset-legend a {
+  display: inline-flex;
+  align-items: center;
   color: inherit;
   text-decoration: none;
 }
@@ -5550,7 +5553,7 @@ ul.rz-profile-menu .rz-navigation-menu .rz-fileupload-row .rz-paginator-element 
 }
 
 .rz-multiselect, .rz-dropdown {
-  display: inline-block;
+  display: inline-flex;
   position: relative;
   overflow: hidden;
 }
@@ -5558,7 +5561,12 @@ ul.rz-profile-menu .rz-navigation-menu .rz-fileupload-row .rz-paginator-element 
 .rz-multiselect .rz-helper-hidden-accessible, .rz-dropdown .rz-helper-hidden-accessible {
   opacity: 0;
   height: 0;
+  width: 0;
   overflow: hidden;
+}
+
+.rz-multiselect .rz-helper-hidden-accessible input, .rz-dropdown .rz-helper-hidden-accessible input {
+  height: 0;
 }
 
 .rz-multiselect .rz-placeholder, .rz-dropdown .rz-placeholder {
@@ -5744,7 +5752,7 @@ ul.rz-profile-menu .rz-navigation-menu .rz-fileupload-row .rz-paginator-element 
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  padding-right: calc(var(--rz-dropdown-trigger-icon-width) / 2);
+  padding: var(--rz-dropdown-label-padding);
 }
 
 .rz-dropdown-chips {
@@ -7030,10 +7038,6 @@ ul.rz-profile-menu .rz-navigation-menu .rz-fileupload-row .rz-paginator-element 
   border-right: var(--rz-grid-header-cell-border);
 }
 
-.rz-datatable-thead th.rz-composite-cell, .rz-grid-table thead th.rz-composite-cell {
-  border-right: var(--rz-grid-header-cell-border-bottom);
-}
-
 .rz-datatable-thead th > div:not(.rz-cell-filter), .rz-grid-table thead th > div:not(.rz-cell-filter) {
   display: flex;
   justify-content: flex-start;
@@ -7107,7 +7111,7 @@ ul.rz-profile-menu .rz-navigation-menu .rz-fileupload-row .rz-paginator-element 
 }
 
 .rz-datatable-tfoot td.rz-composite-cell, .rz-grid-table tfoot td.rz-composite-cell {
-  border-right: var(--rz-grid-right-cell-border-bottom);
+  border-right: var(--rz-grid-right-cell-border);
 }
 
 .rz-datatable-scrollable-header {
@@ -7180,6 +7184,14 @@ ul.rz-profile-menu .rz-navigation-menu .rz-fileupload-row .rz-paginator-element 
 
 .rz-grid-table-striped tbody tr:not(.rz-expanded-row-content):nth-child(odd) > td {
   background-color: var(--rz-grid-background-color);
+}
+
+.rz-grid-table-composite .rz-datatable-thead th, .rz-grid-table-composite.rz-grid-table thead th {
+  border-bottom: var(--rz-grid-header-cell-border);
+}
+
+.rz-grid-table-composite .rz-datatable-thead th.rz-composite-cell, .rz-grid-table-composite.rz-grid-table thead th.rz-composite-cell {
+  border-right: var(--rz-grid-header-cell-border);
 }
 
 .rz-datatable-data .rz-cell-data .rz-button-sm, .rz-datatable-data .rz-cell-data .rz-fileupload .rz-button, .rz-datatable-data .rz-cell-data .rz-fileupload .rz-paginator-element, .rz-fileupload .rz-datatable-data .rz-cell-data .rz-button, .rz-fileupload .rz-datatable-data .rz-cell-data .rz-paginator-element, .rz-grid-table .rz-cell-data .rz-button-sm, .rz-grid-table .rz-cell-data .rz-fileupload .rz-button, .rz-grid-table .rz-cell-data .rz-fileupload .rz-paginator-element, .rz-fileupload .rz-grid-table .rz-cell-data .rz-button, .rz-fileupload .rz-grid-table .rz-cell-data .rz-paginator-element {
@@ -8243,6 +8255,11 @@ ul.rz-profile-menu .rz-navigation-menu .rz-fileupload-row .rz-paginator-element 
   border-left: var(--rz-datafilter-item-path-border);
 }
 
+.rz-datafilter .rz-datafilter-item .rz-multiselect,
+.rz-datafilter .rz-datafilter-item .rz-dropdown {
+  flex: 10rem 1;
+}
+
 .rz-datafilter .rz-datafilter-group-item:after {
   height: calc(var(--rz-input-height) / 2);
 }
@@ -8265,8 +8282,7 @@ ul.rz-profile-menu .rz-navigation-menu .rz-fileupload-row .rz-paginator-element 
 }
 
 .rz-datafilter .rz-datafilter-editor {
-  min-width: 200px;
-  flex: auto;
+  flex: 10rem 4;
 }
 
 .rz-datafilter .rz-button.rz-datafilter-item-clear, .rz-datafilter .rz-datafilter-item-clear.rz-paginator-element {
